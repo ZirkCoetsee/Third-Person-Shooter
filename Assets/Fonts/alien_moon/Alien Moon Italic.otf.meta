@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 692c8d9359b96fb4ca2b8906d730fd27
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Alien Moon
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 565942569a5d1f44a99979fabb51c0a8, type: 3}
+  - {fileID: 12800000, guid: 445b375727e53a441b058880b902397c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

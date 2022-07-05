@@ -15,11 +15,12 @@ public class Leg : MonoBehaviour
     [SerializeField] private AnimationCurve heightCurve;
 
     private float tipMaxHeight = 0.2f;
-    private float tipAnimationTime = 0.15f;
-    private float tipAnimationFrameTime = 1 / 60.0f;
+    [SerializeField] private float tipAnimationTime = 0.15f;
+    [SerializeField]private float tipAnimationFrameTime = 1 / 60.0f;
 
-    private float ikOffset = 0.9885633f;
-    private float tipMoveDist = 0.55f;
+    //Sets the height of the target  thus smaller spiders smaller bottom legs
+    [SerializeField] private float ikOffset = 0.9885633f;
+    [SerializeField] private float tipMoveDist = 0.55f;
     private float maxRayDist = 10.0f;
     private float tipPassOver = 0.55f / 2.0f;
 
