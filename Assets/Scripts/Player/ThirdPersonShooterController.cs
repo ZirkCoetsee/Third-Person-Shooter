@@ -12,18 +12,14 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private float aimSensitivity;
     [SerializeField] private LayerMask aimLayerMask = new LayerMask();
     [SerializeField] private Transform debugTransform;
-    [SerializeField] private TrailRenderer tracerEffect;
-    [SerializeField] private Transform spawnBulletPosition;
-    [SerializeField] private ParticleSystem vfxHitGreen;
-    [SerializeField] private ParticleSystem vfxHitRed;
     [SerializeField] private float aimDuration = 0.3f;
-    [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] Rig aimLayer;
-    [SerializeField] Weapon weapon;
 
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
+    private WeaponSwitcher weaponSwitcher;
+
 
 
     private void Awake()
@@ -31,6 +27,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
+        weaponSwitcher = FindObjectOfType<WeaponSwitcher>();
     }
 
     private void Update()
@@ -73,29 +70,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 //Projectile HitScan method replaces hit logic on bullet object
                 if (hitTransform != null)
                 {
-                    muzzleFlash.Emit(1);
-                    var tracer = Instantiate(tracerEffect, spawnBulletPosition.position, Quaternion.identity);
-                    tracer.AddPosition(spawnBulletPosition.position);
-                    tracer.transform.position = raycastHit.point;
-                    if (hitTransform.tag == "Enemy")
-                    {
-                        //Hit Target
-                        //Instantiate(vfxHitGreen, mouseWorldPosition, Quaternion.identity);
-                        vfxHitGreen.transform.position = raycastHit.point;
-                        vfxHitGreen.transform.forward = raycastHit.normal;
-                        vfxHitGreen.Emit(1);
-                        weapon.Shoot(raycastHit);
-
-                    }
-                    else
-                    {
-                        //Hit Something else
-                        //Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
-                        vfxHitRed.transform.position = raycastHit.point;
-                        vfxHitRed.transform.forward = raycastHit.normal;
-                        vfxHitRed.Emit(1);
-
-                    }
+                    StartCoroutine(weaponSwitcher.currentWeapon.Shoot(raycastHit));
                 }
 
                 starterAssetsInputs.shoot = false;

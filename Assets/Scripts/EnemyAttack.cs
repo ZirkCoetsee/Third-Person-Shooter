@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] public float damage = 40f;
+    [SerializeField] public float damage = 1f;
     PlayerHealth playerHealth;
 
     // Start is called before the first frame update
@@ -20,8 +20,9 @@ public class EnemyAttack : MonoBehaviour
             return;
         }
 
-        playerHealth.TakeDamage(2f);
+        //This damage is called twice?
 
-        Debug.Log("Spider Bite!");
+        playerHealth.TakeDamage(damage);
+
     }
 }

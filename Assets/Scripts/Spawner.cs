@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Wave[] waves;
-    public Enemy enemy;
+    public GameObject enemy;
 
     Wave currentWave;
     int currentWaveNumber;
@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
 
     public void Start()
     {
-        //        NextWave();
+        NextWave();
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
             enemiesRemaingToSpawn--;
             nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
-            Enemy spawnedEnemy = Instantiate(enemy, new Vector3(this.transform.position.x, 0f, this.transform.position.z), Quaternion.identity) as Enemy;
+            GameObject spawnedEnemy = Instantiate(enemy, new Vector3(this.transform.position.x, 0f, this.transform.position.z), Quaternion.identity) as GameObject;
         }
     }
 
@@ -52,7 +52,7 @@ public class Spawner : MonoBehaviour
         public float timeBetweenSpawns;
     }
 
-    void OnEnmyDeath()
+    public void OnEnmyDeath()
     {
         Debug.Log("Enemy Has died");
         enemiesRemaingAlive--;
