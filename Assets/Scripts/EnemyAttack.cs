@@ -23,6 +23,7 @@ public class EnemyAttack : MonoBehaviour
         //This damage is called twice?
 
         playerHealth.TakeDamage(damage);
+        playerHealth.GetComponent<DamageIndicator>().ShowDamageImpact();
 
     }
 }

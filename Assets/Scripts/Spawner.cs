@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Wave[] waves;
-    public GameObject enemy;
 
     Wave currentWave;
     int currentWaveNumber;
@@ -25,7 +24,7 @@ public class Spawner : MonoBehaviour
             enemiesRemaingToSpawn--;
             nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
-            GameObject spawnedEnemy = Instantiate(enemy, new Vector3(this.transform.position.x, 0f, this.transform.position.z), Quaternion.identity) as GameObject;
+            GameObject spawnedEnemy = Instantiate(currentWave.enemy, new Vector3(this.transform.position.x, 0f, this.transform.position.z), Quaternion.identity) as GameObject;
         }
     }
 
@@ -34,7 +33,6 @@ public class Spawner : MonoBehaviour
         currentWaveNumber++;
         //Stop out of array exeption if the waves have finished
 
-        Debug.Log("Wave: " + currentWaveNumber);
         if (currentWaveNumber - 1 < waves.Length)
         {
             currentWave = waves[currentWaveNumber - 1];
@@ -50,11 +48,12 @@ public class Spawner : MonoBehaviour
     {
         public int enemyCount;
         public float timeBetweenSpawns;
+        public GameObject enemy;
+
     }
 
     public void OnEnmyDeath()
     {
-        Debug.Log("Enemy Has died");
         enemiesRemaingAlive--;
         if (enemiesRemaingAlive == 0)
         {

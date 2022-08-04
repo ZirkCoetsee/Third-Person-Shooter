@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour
             distanceToNest = Vector3.Distance(nestPosition.position, transform.position);
             //Debug.Log($"Distance to nest: {distanceToNest}");
             //Debug.Log($"Stopping Distance {pathfinder.stoppingDistance}");
-            FaceNest();
+            //FaceNest();
 
             if (distanceToNest >= pathfinder.stoppingDistance)
             {
@@ -191,9 +191,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Debug.Log("Select a random nest");
+            //Debug.Log("Select a random nest");
             int value = UnityEngine.Random.Range(0, nests.Count);
-            Debug.Log($"Moving to nest number: {value}" );
+            //Debug.Log($"Moving to nest number: {value}" );
             if (nests[value].IsDead())
             {
                 nests.Remove(nests[value]);

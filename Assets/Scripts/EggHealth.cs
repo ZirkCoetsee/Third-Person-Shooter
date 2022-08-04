@@ -8,6 +8,7 @@ public class EggHealth : MonoBehaviour
     [SerializeField] float hitPoints = 100f;
     [SerializeField] UnityEvent OnDestroyedEvent;
     [SerializeField] GameObject minimapNode;
+    [SerializeField] GameObject directionIndicator;
 
     bool isDead = false;
 
@@ -34,6 +35,9 @@ public class EggHealth : MonoBehaviour
         isDead = true;
         OnDestroyedEvent.Invoke();
         Destroy(minimapNode);
-        this.GetComponent<Renderer>().material.color = new Color(0,0,0);
+        Destroy(directionIndicator);
+        GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0,0,0));
+
     }
 }

@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject enemyContainer;
     [SerializeField] UnityEvent OnDamageTakenEvent;
     [SerializeField] UnityEvent OnEnemyDiedEvent;
+    [SerializeField] GameObject minimapDisplay;
 
     bool isDead = false;
 
@@ -36,6 +37,14 @@ public class EnemyHealth : MonoBehaviour
         }
         isDead = true;
         GetComponent<Animator>().SetTrigger("Die");
+
+        RandomPickupSpawner pickUp = GetComponent<RandomPickupSpawner>();
+        if (pickUp != null)
+        {
+            pickUp.SpawnRandomPickup(this.transform);
+        }
         OnEnemyDiedEvent.Invoke();
+        Destroy(minimapDisplay);
+
     }
 }

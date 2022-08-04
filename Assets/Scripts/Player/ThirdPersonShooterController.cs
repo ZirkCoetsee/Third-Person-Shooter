@@ -14,11 +14,17 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Transform debugTransform;
     [SerializeField] private float aimDuration = 0.3f;
     [SerializeField] Rig aimLayer;
+    [SerializeField] TMPro.TextMeshProUGUI eggText;
+    [SerializeField] TMPro.TextMeshProUGUI enemyText;
+    private EggHealth[] eggList;
+
 
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
     private WeaponSwitcher weaponSwitcher;
+    private int maxEggs;
+    private int eggsleft;
 
 
 
@@ -28,6 +34,9 @@ public class ThirdPersonShooterController : MonoBehaviour
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
         weaponSwitcher = FindObjectOfType<WeaponSwitcher>();
+        eggList = FindObjectsOfType<EggHealth>();
+        maxEggs = eggList.Length;
+        eggsleft = maxEggs;
     }
 
     private void Update()
@@ -70,10 +79,11 @@ public class ThirdPersonShooterController : MonoBehaviour
                 //Projectile HitScan method replaces hit logic on bullet object
                 if (hitTransform != null)
                 {
-                    StartCoroutine(weaponSwitcher.currentWeapon.Shoot(raycastHit));
+                    //StartCoroutine(weaponSwitcher.currentWeapon.Shoot(raycastHit));
+                    weaponSwitcher.currentWeapon.ShootRapid(raycastHit);
                 }
 
-                starterAssetsInputs.shoot = false;
+                //starterAssetsInputs.shoot = false;
             }
 
         }
@@ -92,5 +102,17 @@ public class ThirdPersonShooterController : MonoBehaviour
 
 
 
+    }
+
+    public void UpdateNumberOfEggs()
+    {
+        eggsleft = eggsleft - 1;
+        Debug.Log("Update Number of eggs called");
+        eggText.text = $"{eggsleft}/{maxEggs}";
+
+        if (eggsleft == 0)
+        {
+            GetComponent<WinHandler>().HandleWin();
+        }
     }
 }

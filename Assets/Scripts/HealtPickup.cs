@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickUp : MonoBehaviour
+public class HealtPickup : MonoBehaviour
 {
-    [SerializeField] int ammoAmount = 5;
-    [SerializeField] AmmoType ammoType;
+    [SerializeField] int healAmount = 5;
     [SerializeField] int RotationSpeed = 10;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            FindObjectOfType<Ammo>().IncreaseCurrentAmmo(ammoType,  ammoAmount);
+            FindObjectOfType<PlayerHealth>().Heal(healAmount);
             Destroy(gameObject);
         }
     }
