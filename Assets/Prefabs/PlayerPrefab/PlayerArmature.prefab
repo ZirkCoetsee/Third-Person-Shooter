@@ -2212,6 +2212,7 @@ GameObject:
   - component: {fileID: 1233066022532382523}
   - component: {fileID: 1233066022532382510}
   - component: {fileID: 429451476984416117}
+  - component: {fileID: 1506749655191082550}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -2571,8 +2572,6 @@ MonoBehaviour:
   aimLayer: {fileID: 429451477632162974}
   eggText: {fileID: 0}
   enemyText: {fileID: 0}
-  eggCount: 0
-  enemyCount: 0
 --- !u!114 &429451476984416113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2607,7 +2606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab240375cace224185ce30e0f52c933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 10
+  hitPoints: 50
+  healthBar: {fileID: 0}
 --- !u!114 &1233066022532382523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2622,9 +2622,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoSlots:
   - ammoType: 1
-    ammoAmount: 10
+    ammoAmount: 50
   - ammoType: 0
-    ammoAmount: 100
+    ammoAmount: 900
 --- !u!114 &1233066022532382510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2652,6 +2652,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactCanvas: {fileID: 0}
   impactTime: 0.3
+--- !u!114 &1506749655191082550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429451476984416118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82422a1561d98f5458af0be2fccfb7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameWinCancas: {fileID: 0}
 --- !u!1 &429451477037110243
 GameObject:
   m_ObjectHideFlags: 0
@@ -28355,7 +28368,7 @@ MonoBehaviour:
   vfxHitGreen: {fileID: 1233066022560674427}
   vfxHitRed: {fileID: 1233066023002711246}
   tracerEffect: {fileID: 8363199469479245784, guid: 7c24a9d7d6f658b409f09e111143682b, type: 3}
-  shootDelay: 0.1
+  shootDelay: 0
   ammoSlot: {fileID: 1233066022532382523}
   ammoType: 0
   inaccuracyDistance: 0
@@ -28364,6 +28377,7 @@ MonoBehaviour:
   shootClip: {fileID: 8300000, guid: df0ef383c2ffa2b4ab341019bd7371e0, type: 3}
   emptyClip: {fileID: 8300000, guid: 1b1eaca72cdc1e14f8166870c27a7b56, type: 3}
   shootClipVolume: 0.5
+  msBetweenShots: 100
 --- !u!1 &1233066021960321020
 GameObject:
   m_ObjectHideFlags: 0
@@ -38178,7 +38192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233066022415869865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.019, y: 1.895, z: -0.677}
+  m_LocalPosition: {x: 0.019, y: 1.86, z: -0.597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 429451476984416104}
@@ -38195,8 +38209,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.14887857, g: 0.26053622, b: 0.7735849, a: 1}
-  m_Intensity: 0.76
+  m_Color: {r: 0.8301887, g: 0.17663795, b: 0.15977213, a: 1}
+  m_Intensity: 0.37
   m_Range: 0.99
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -43321,7 +43335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99193087fa0a12c4a97ad54e07fdc472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 50
   muzzleFlash: {fileID: 672337417066268575}
   spawnBulletPosition: {fileID: 1233066023135806266}
   vfxHitGreen: {fileID: 1233066022480788803}
@@ -43336,6 +43350,7 @@ MonoBehaviour:
   shootClip: {fileID: 8300000, guid: 5f469376a86a3bc43903b2f45a4f65af, type: 3}
   emptyClip: {fileID: 8300000, guid: 1b1eaca72cdc1e14f8166870c27a7b56, type: 3}
   shootClipVolume: 1
+  msBetweenShots: 800
 --- !u!1 &1233066022560674422
 GameObject:
   m_ObjectHideFlags: 0

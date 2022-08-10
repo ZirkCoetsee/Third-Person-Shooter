@@ -16,6 +16,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] Rig aimLayer;
     [SerializeField] TMPro.TextMeshProUGUI eggText;
     [SerializeField] TMPro.TextMeshProUGUI enemyText;
+    [SerializeField] Canvas PauseCanvas;
     private EggHealth[] eggList;
 
 
@@ -30,6 +31,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void Awake()
     {
+        PauseCanvas.enabled = false;
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
@@ -41,6 +43,11 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey("escape"))
+        {
+            PauseGame();
+        }
+
         Vector3 mouseWorldPosition = Vector3.zero;
         //Get the mouse position (center of the screen)
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2f);
@@ -102,6 +109,24 @@ public class ThirdPersonShooterController : MonoBehaviour
 
 
 
+    }
+
+    public void PauseGame()
+    {
+        PauseCanvas.enabled = true;
+        Time.timeScale = 0;
+        FindObjectOfType<WeaponSwitcher>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void ResumeGame()
+    {
+        PauseCanvas.enabled = false;
+        Time.timeScale = 1;
+        FindObjectOfType<WeaponSwitcher>().enabled = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     public void UpdateNumberOfEggs()
